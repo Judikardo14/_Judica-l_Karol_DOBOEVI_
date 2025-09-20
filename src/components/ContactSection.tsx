@@ -65,7 +65,7 @@ export function ContactSection() {
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      url: 'https://linkedin.com/in/judicael-doboevi',
+      url: 'https://www.linkedin.com/in/judica%C3%ABl-doboevi-b234bb351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       color: 'hover:text-white hover:bg-blue-600',
       description: 'Professional Network'
     },
