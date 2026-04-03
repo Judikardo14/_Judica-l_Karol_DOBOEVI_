@@ -9,10 +9,10 @@ const skillsData = [
     icon: Code,
     color: "from-cyan-500 to-blue-500",
     skills: [
-      { name: "Python", level: 80, description: "Data Science, ML, Automation" },
-      { name: "C", level: 75, description: "Programmation système" },
-      { name: "Matlab", level: 80, description: "Calcul scientifique" },
-      { name: "LaTeX", level: 65, description: "Documentation technique" }
+      { name: "Python", level: 70, description: "Data Science, ML, Automatisation" },
+      { name: "C", level: 65, description: "Programmation système (cours)" },
+      { name: "Matlab", level: 65, description: "Calcul scientifique (cours)" },
+      { name: "LaTeX", level: 75, description: "Documentation technique" }
     ]
   },
   {
@@ -20,10 +20,10 @@ const skillsData = [
     icon: Brain,
     color: "from-purple-500 to-pink-500",
     skills: [
-      { name: "Machine Learning", level: 80, description: "Algorithmes d'apprentissage" },
-      { name: "Data Science", level: 75, description: "Analyse et visualisation" },
-      { name: "Neural Networks", level: 70, description: "Deep Learning" },
-      { name: "NLP", level: 60, description: "Traitement du langage" }
+      { name: "Machine Learning", level: 65, description: "Algorithmes supervisés/non-supervisés" },
+      { name: "Data Science", level: 65, description: "Analyse et visualisation" },
+      { name: "LightGBM / Scikit-learn", level: 60, description: "Modèles ensemblistes" },
+      { name: "NLP (notions)", level: 40, description: "Traitement du langage naturel" }
     ]
   },
   {
@@ -31,10 +31,10 @@ const skillsData = [
     icon: Terminal,
     color: "from-green-500 to-teal-500",
     skills: [
-      { name: "Git", level: 85, description: "Contrôle de version" },
-      { name: "Docker", level: 50, description: "Containerisation" },
-      { name: "Linux", level: 50, description: "Administration système" },
-      { name: "Jupyter", level: 90, description: "Notebooks scientifiques" }
+      { name: "Git", level: 70, description: "Contrôle de version" },
+      { name: "Linux (notions)", level: 40, description: "Ligne de commande" },
+      { name: "Jupyter", level: 80, description: "Notebooks scientifiques" },
+      { name: "Streamlit", level: 65, description: "Dashboards Python" }
     ]
   },
   {
@@ -42,10 +42,10 @@ const skillsData = [
     icon: FileText,
     color: "from-yellow-500 to-orange-500",
     skills: [
-      { name: "Microsoft Office", level: 95, description: "Suite complète" },
-      { name: "Excel Avancé", level: 90, description: "Analyse de données" },
-      { name: "PowerPoint", level: 92, description: "Présentations pro" },
-      { name: "Word", level: 95, description: "Rédaction technique" }
+      { name: "Microsoft Office", level: 90, description: "Suite complète" },
+      { name: "Excel Avancé", level: 85, description: "Analyse de données" },
+      { name: "PowerPoint", level: 88, description: "Présentations professionnelles" },
+      { name: "Word", level: 90, description: "Rédaction technique" }
     ]
   },
   {
@@ -53,20 +53,21 @@ const skillsData = [
     icon: Globe,
     color: "from-indigo-500 to-purple-500",
     skills: [
+      { name: "Adja", level: 100, description: "Langue maternelle" },
       { name: "Français", level: 95, description: "Langue de travail" },
-      { name: "Anglais", level: 80, description: "Technique et scientifique" },
-      { name: "Adja", level: 100, description: "Langue maternelle" }
+      { name: "Anglais", level: 70, description: "Technique et scientifique" },
+      { name: "Fon / Yoruba", level: 60, description: "Langues locales" }
     ]
   },
   {
-    category: "Bases de Données",
+    category: "Mathématiques",
     icon: Database,
     color: "from-red-500 to-rose-500",
     skills: [
-      { name: "SQL", level: 65, description: "Requêtes complexes" },
-      { name: "MongoDB", level: 40, description: "NoSQL" },
-      { name: "PostgreSQL", level: 30, description: "SGBD relationnel" },
-      { name: "Data Modeling", level: 55, description: "Conception BDD" }
+      { name: "Algèbre linéaire", level: 75, description: "Fondements du ML" },
+      { name: "Probabilités & Statistiques", level: 70, description: "Analyse de données" },
+      { name: "Modélisation numérique", level: 65, description: "Équations différentielles" },
+      { name: "Chaînes de Markov", level: 60, description: "Processus stochastiques" }
     ]
   }
 ];
@@ -237,16 +238,16 @@ export function SkillsGrid() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                title: "Club d'IA - ENSGMM",
+                title: "Club d'IA — ENSGMM",
                 period: "2024 - Présent",
-                description: "Membre actif dans le développement de projets d'Intelligence Artificielle et participation aux hackathons",
+                description: "Membre actif du bureau du Club d'IA de l'ENSGMM — organisation de compétitions et développement de projets à impact social.",
                 icon: Brain,
                 color: "from-purple-500 to-pink-500"
               },
               {
                 title: "Génie en Herbe",
-                period: "2023 - 2025",
-                description: "Compétition intellectuelle développant les capacités de réflexion rapide et de culture générale",
+                period: "2023",
+                description: "Compétition intellectuelle universitaire développant les capacités de réflexion rapide et de culture générale.",
                 icon: Terminal,
                 color: "from-cyan-500 to-blue-500"
               }
