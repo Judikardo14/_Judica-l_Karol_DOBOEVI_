@@ -6,57 +6,75 @@ import { GlitchText } from './GlitchText';
 const timelineData = [
   {
     year: "2025-2028",
-    title: "Cycle Ingénieur - Modélisation Mathématique",
-    organization: "ENSGMM - Abomey",
-    description: "École Nationale Supérieure de Génie Mathématique et Modélisation. Formation d'ingénieur spécialisé en modélisation mathématique et applications numériques",
+    title: "Cycle Ingénieur — Génie Mathématique et Modélisation",
+    organization: "ENSGMM - UNSTIM, Abomey",
+    description: "École Nationale Supérieure de Génie Mathématique et Modélisation. Formation d'ingénieur spécialisé en modélisation mathématique et applications numériques.",
     type: "En cours",
     icon: Brain,
     color: "from-purple-500 to-pink-500"
   },
   {
-    year: "2025",
+    year: "2026",
+    title: "🥇 Gold Prize — Water4Future UNESCO Hackathon",
+    organization: "UNESCO — Hackathon mondial",
+    description: "Premier prix du hackathon mondial Water4Future organisé par l'UNESCO, avec le projet Eauracle — plateforme IA de prédiction des crues pour le bassin du fleuve Ouémé.",
+    type: "Prix",
+    icon: Award,
+    color: "from-yellow-500 to-orange-500"
+  },
+  {
+    year: "2025-2026",
+    title: "Formation en Marketing Numérique — D-CLIC",
+    organization: "Organisation Internationale de la Francophonie (OIF)",
+    description: "Programme D-CLIC de l'OIF — formation certifiante en marketing numérique.",
+    type: "Formation",
+    icon: Code,
+    color: "from-indigo-500 to-purple-500"
+  },
+  {
+    year: "2025-2026",
     title: "Formation Data Science & IA",
     organization: "Africa Tech UP Tour",
-    description: "Programme intensif en Data Science et Intelligence Artificielle",
-    type: "formation",
+    description: "Programme Data & IA pour l'Afrique — formation en Data Science et Intelligence Artificielle.",
+    type: "Formation",
     icon: Brain,
-    color: "from-indigo-500 to-purple-500"
+    color: "from-cyan-500 to-blue-500"
+  },
+  {
+    year: "2025",
+    title: "DataTour — Crédit Scoring",
+    organization: "Data Afrique Hub",
+    description: "Participation à la Coupe d'Afrique des Nations en Science des Données datatour2025 — challenge de credit scoring.",
+    type: "Compétition",
+    icon: Code,
+    color: "from-green-500 to-teal-500"
+  },
+  {
+    year: "2025",
+    title: "Stage en entreprise",
+    organization: "Compagnie Béninoise des Textiles (CBT) — Lokossa",
+    description: "Stage d'immersion au département financier de la CBT.",
+    type: "Expérience",
+    icon: Calendar,
+    color: "from-rose-500 to-pink-500"
   },
   {
     year: "2023-2025",
     title: "Classes Préparatoires Ingénieur",
     organization: "INSPEI - UNSTIM, Abomey",
-    description: "Institut National Supérieur des classes Préparatoires aux Études d'Ingénieur",
-    type: "education",
+    description: "Institut National Supérieur des classes Préparatoires aux Études d'Ingénieur — UNSTIM.",
+    type: "Formation",
     icon: GraduationCap,
     color: "from-cyan-500 to-blue-500"
   },
   {
     year: "2022-2023",
     title: "Baccalauréat série C",
-    organization: "Mention Très Bien avec 17.182/20 de moyenne",
-    description: "Diplôme du baccalauréat scientifique avec brio",
-    type: "diploma",
+    organization: "Mention Très Bien — 17.182/20",
+    description: "Diplôme du baccalauréat scientifique, obtenu avec la mention Très Bien.",
+    type: "Diplôme",
     icon: Award,
     color: "from-green-500 to-teal-500"
-  },
-  {
-    year: "2020-2023",
-    title: "Enseignement Secondaire",
-    organization: "Collège d'Enseignement Général I de Dogbo",
-    description: "Formation secondaire complète avec focus sur les sciences",
-    type: "education",
-    icon: School,
-    color: "from-yellow-500 to-orange-500"
-  },
-  {
-    year: "2024",
-    title: "Club d'IA - ENSGMM",
-    organization: "Membre Actif",
-    description: "Participation active dans le développement de projets d'Intelligence Artificielle",
-    type: "activity",
-    icon: Code,
-    color: "from-indigo-500 to-purple-500"
   }
 ];
 
@@ -197,9 +215,9 @@ export function TimelineSection() {
         >
           {[
             { label: "Années d'études", value: "5+", color: "text-cyan-400" },
-            { label: "Projets IA", value: "10+", color: "text-purple-400" },
-            { label: "Technologies maîtrisées", value: "8+", color: "text-green-400" },
-            { label: "Certifications", value: "3", color: "text-yellow-400" }
+            { label: "Projets IA", value: "3+", color: "text-purple-400" },
+            { label: "Technologies maîtrisées", value: "6+", color: "text-green-400" },
+            { label: "Prix & Titres", value: "2", color: "text-yellow-400" }
           ].map((stat, index) => (
             <motion.div
               key={index}
