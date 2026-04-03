@@ -1,75 +1,39 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef, useState } from 'react';
-import { ExternalLink, Github, Brain, Code, Database, Globe, Zap, Terminal } from 'lucide-react';
+import { ExternalLink, Github, Brain, Globe, Zap, Terminal } from 'lucide-react';
 import { GlitchText } from './GlitchText';
 
 const projectsData = [
   {
     id: 1,
-    title: "Reconnaissance Chien et Chat",
-    description: "Modèle de Deep Learning pour la classification d'images de chiens et chats avec haute précision",
-    longDescription: "Développement d'un modèle CNN utilisant TensorFlow/Keras pour classifier automatiquement les images de chiens et chats. Architecture optimisée avec data augmentation et techniques de régularisation pour atteindre plus de 95% de précision.",
-    technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "Matplotlib"],
-    category: "Deep Learning",
-    status: "Terminé",
-    image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    color: "from-green-500 to-emerald-500",
-    icon: Brain
-  },
-  {
-    id: 2,
-    title: "Système de Gestion de Stock",
-    description: "Application complète de gestion d'inventaire pour entreprises avec interface moderne",
-    longDescription: "Développement d'un système complet de gestion de stock avec authentification, gestion des fournisseurs, alertes automatiques, rapports détaillés et interface responsive. Intégration d'API REST et base de données sécurisée.",
-    technologies: ["Python", "Flask", "SQLite", "HTML/CSS", "JavaScript"],
-    category: "Développement Web",
+    title: "Eauracle",
+    description: "Plateforme IA de prédiction des crues et d'alerte précoce pour le bassin du fleuve Ouémé au Bénin — 🥇 Gold Prize UNESCO Water4Future Hackathon 2026",
+    longDescription: "Développé au sein de l'équipe Sintchigan (Team 65), Eauracle est une plateforme d'intelligence artificielle pour la prédiction des inondations dans le bassin hydrographique du fleuve Ouémé. Le système intègre des données météorologiques, hydrologiques et géographiques pour générer des alertes précoces destinées aux communautés vulnérables du Bénin. Projet récompensé du Gold Prize lors du hackathon mondial Water4Future organisé par l'UNESCO en 2026.",
+    technologies: ["Python", "Machine Learning", "Streamlit", "API Météo", "Pandas"],
+    category: "IA pour l'Impact Social",
     status: "Terminé",
     image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     color: "from-blue-500 to-cyan-500",
-    icon: Database
-  },
-  {
-    id: 3,
-    title: "Prédiction Maladies Cardiovasculaires",
-    description: "Modèle ML pour prédire les risques de maladies cardiaques basé sur des données médicales",
-    longDescription: "Développement d'un modèle de Machine Learning utilisant plusieurs algorithmes (Random Forest, SVM, Logistic Regression) pour prédire les risques cardiovasculaires. Analyse exploratoire approfondie et optimisation des hyperparamètres.",
-    technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Seaborn"],
-    category: "Machine Learning",
-    status: "Terminé",
-    image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    color: "from-red-500 to-pink-500",
-    icon: Brain
-  },
-  {
-    id: 4,
-    title: "Chatbot Éducatif avec Gemini",
-    description: "Assistant virtuel intelligent utilisant l'API Gemini pour l'aide aux étudiants",
-    longDescription: "Création d'un chatbot éducatif avancé intégrant l'API Google Gemini pour répondre aux questions des étudiants. Interface conversationnelle intuitive avec historique des conversations et système de feedback.",
-    technologies: ["Python", "Gemini API", "Streamlit", "LangChain", "NLP"],
-    category: "Natural Language Processing",
-    status: "Terminé",
-    image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    color: "from-purple-500 to-indigo-500",
-    icon: Terminal
-  },
-  {
-    id: 5,
-    title: "IA Prédictive Agricole",
-    description: "Système d'IA pour prédire les rendements agricoles au Bénin utilisant machine learning",
-    longDescription: "Développement d'un modèle prédictif utilisant Python, TensorFlow et des données météorologiques pour optimiser les rendements agricoles locaux. Analyse de données climatiques et de sols pour des recommandations personnalisées aux agriculteurs béninois.",
-    technologies: ["Python", "TensorFlow", "Pandas", "Scikit-learn", "API Météo"],
-    category: "Intelligence Artificielle",
-    status: "En développement",
-    image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    color: "from-green-500 to-teal-500",
     icon: Zap
   },
   {
-    id: 6,
+    id: 2,
+    title: "Prédiction des Crues — Kaggle",
+    description: "Modèle de régression ML pour la prédiction des niveaux de crues, développé dans le cadre du Kaggle Playground Series S4E5 (R² ≈ 0.869)",
+    longDescription: "Développement d'un modèle de Machine Learning basé sur LightGBM pour prédire les niveaux d'inondation à partir de données hydrologiques et environnementales. Le modèle atteint un R² d'environ 0.869 sur le jeu de test, accompagné d'un dashboard Streamlit pour visualiser les prédictions. Projet documenté pour évaluation académique.",
+    technologies: ["Python", "LightGBM", "Scikit-learn", "Streamlit", "Pandas", "NumPy"],
+    category: "Machine Learning",
+    status: "Terminé",
+    image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    color: "from-green-500 to-teal-500",
+    icon: Brain
+  },
+  {
+    id: 3,
     title: "Portfolio Web Interactif",
-    description: "Portfolio personnel cyberpunk avec animations 3D et effets futuristes avancés",
-    longDescription: "Création de ce portfolio interactif avec des animations avancées, effets de particules, design cyberpunk et Easter egg Konami Code. Optimisation des performances et responsive design pour une expérience utilisateur immersive.",
-    technologies: ["React", "Framer Motion", "TypeScript", "Tailwind", "Canvas"],
+    description: "Portfolio personnel cyberpunk avec animations avancées et design futuriste",
+    longDescription: "Création de ce portfolio interactif avec des animations avancées via Framer Motion, design cyberpunk, effets glitch et Easter egg Konami Code. Développé avec React, TypeScript et Tailwind CSS pour une expérience utilisateur immersive et responsive.",
+    technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS"],
     category: "Développement Web",
     status: "Terminé",
     image: "https://images.unsplash.com/photo-1739184523594-564cb9b61126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBmdXR1cmlzdGljJTIwbmVvbiUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU4MDc5NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
