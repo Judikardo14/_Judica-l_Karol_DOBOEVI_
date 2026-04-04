@@ -127,98 +127,94 @@ export function TimelineSection() {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Central line — hidden on mobile, visible on lg */}
-          <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 via-purple-400 to-cyan-400 opacity-30" />
-          {/* Left line on mobile */}
-          <div className="lg:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-cyan-400 via-purple-400 to-cyan-400 opacity-30" />
+          {/* Mobile: line left-aligned */}
+          <div className="lg:hidden absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400 via-purple-400 to-cyan-400 opacity-30" />
+          {/* Desktop: centered line */}
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400 via-purple-400 to-cyan-400 opacity-30" />
 
           {/* Timeline items */}
-          <div className="space-y-10 lg:space-y-12">
-            {timelineData.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                className={`flex items-center lg:${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-              >
-                {/* ── MOBILE layout: dot on left, card fills right ── */}
-                {/* ── DESKTOP layout: card takes 5/12, dot 2/12, empty 5/12 ── */}
-
-                {/* Mobile dot (hidden on lg) */}
-                <div className="lg:hidden flex-shrink-0 w-10 flex justify-center">
-                  <motion.div
-                    className="relative z-10"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.08 + 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color} relative z-10`} />
-                    <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${item.color} animate-pulse opacity-50 scale-150`} />
-                  </motion.div>
-                </div>
-
-                {/* Card — full width on mobile, 5/12 on desktop */}
+          <div className="flex flex-col gap-8 lg:gap-10">
+            {timelineData.map((item, index) => {
+              const isLeft = index % 2 === 0;
+              return (
                 <motion.div
-                  className="flex-1 lg:w-5/12 lg:flex-none group"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  key={index}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: index * 0.07 }}
+                  viewport={{ once: true }}
+                  className={`flex items-start gap-4 lg:gap-0 ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
                 >
-                  <div className="relative bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-xl p-5 lg:p-6 hover:border-cyan-400/30 transition-colors">
-                    {/* Year badge */}
-                    <div className="absolute -top-3 left-4 lg:left-6">
-                      <div className={`px-3 lg:px-4 py-1 bg-gradient-to-r ${item.color} rounded-full text-white font-mono text-xs lg:text-sm font-bold`}>
-                        {item.year}
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="mt-4">
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className={`p-2 rounded-lg bg-gradient-to-r ${item.color} shrink-0`}>
-                          <item.icon className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-white font-bold text-base lg:text-lg mb-1 leading-snug">{item.title}</h3>
-                          <p className="text-cyan-400 font-mono text-xs lg:text-sm">{item.organization}</p>
-                        </div>
-                      </div>
-                      <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
-
-                      {/* Type indicator */}
-                      <div className="mt-3 flex items-center gap-2">
-                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color}`} />
-                        <span className="text-white/50 text-xs font-mono uppercase">{item.type}</span>
-                      </div>
-                    </div>
-
-                    {/* Hover glow */}
-                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${item.color} opacity-5 blur-xl`} />
-                    </div>
+                  {/* Mobile dot */}
+                  <div className="lg:hidden flex-shrink-0 w-12 flex justify-center pt-5">
+                    <motion.div
+                      className="relative z-10"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.07 + 0.15 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className={`w-3.5 h-3.5 rounded-full bg-gradient-to-r ${item.color}`} />
+                      <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${item.color} animate-pulse opacity-40 scale-150`} />
+                    </motion.div>
                   </div>
-                </motion.div>
 
-                {/* Desktop center node (hidden on mobile) */}
-                <div className="hidden lg:flex w-2/12 justify-center">
+                  {/* Card */}
                   <motion.div
-                    className="relative"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.08 + 0.3 }}
-                    viewport={{ once: true }}
+                    className="flex-1 lg:w-5/12 lg:flex-none group"
+                    whileHover={{ scale: 1.015 }}
+                    transition={{ type: "spring", stiffness: 280 }}
                   >
-                    <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color} relative z-10`} />
-                    <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${item.color} animate-pulse opacity-50 scale-150`} />
+                    <div className="relative bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-xl hover:border-cyan-400/30 transition-colors overflow-hidden">
+                      {/* Top color strip */}
+                      <div className={`h-1 w-full bg-gradient-to-r ${item.color}`} />
+                      <div className="p-5 lg:p-6">
+                        {/* Year + type */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className={`px-3 py-0.5 rounded-full text-white font-mono text-xs font-bold bg-gradient-to-r ${item.color}`}>
+                            {item.year}
+                          </span>
+                          <span className="text-white/40 text-xs font-mono uppercase tracking-wider">{item.type}</span>
+                        </div>
+                        {/* Icon + title + org */}
+                        <div className="flex items-start gap-3 mb-3">
+                          <div className={`p-2 rounded-lg bg-gradient-to-r ${item.color} shrink-0 mt-0.5`}>
+                            <item.icon className="w-4 h-4 text-white" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-white font-bold text-base lg:text-lg leading-snug mb-1">{item.title}</h3>
+                            <p className="text-cyan-400 font-mono text-xs lg:text-sm">{item.organization}</p>
+                          </div>
+                        </div>
+                        {/* Description */}
+                        <p className="text-white/60 text-sm leading-relaxed pl-11">{item.description}</p>
+                      </div>
+                      {/* Hover glow */}
+                      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-5 blur-2xl`} />
+                      </div>
+                    </div>
                   </motion.div>
-                </div>
 
-                {/* Desktop empty side */}
-                <div className="hidden lg:block w-5/12" />
-              </motion.div>
-            ))}
+                  {/* Desktop center dot */}
+                  <div className="hidden lg:flex w-2/12 justify-center pt-6">
+                    <motion.div
+                      className="relative z-10"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      transition={{ duration: 0.4, delay: index * 0.07 + 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color}`} />
+                      <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${item.color} animate-pulse opacity-40 scale-150`} />
+                    </motion.div>
+                  </div>
+
+                  {/* Desktop empty side */}
+                  <div className="hidden lg:block w-5/12" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
