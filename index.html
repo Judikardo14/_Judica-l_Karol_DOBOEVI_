@@ -57,7 +57,9 @@
   .skip:focus{left:8px}
 
   /* barre du haut */
-  .top{position:sticky;top:0;z-index:20;background:var(--bar);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+  .top{position:sticky;top:0;z-index:20;background:var(--bar);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);transition:transform .3s ease}
+  .top.hide{transform:translateY(-100%)}
+  .top.hide:focus-within{transform:none}
   .top-in{max-width:1120px;margin:0 auto;padding:9px var(--gutter);display:flex;align-items:center;gap:20px}
   .brand{font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none}
   #nav{display:flex;gap:22px;margin-left:auto;font-family:var(--display);font-weight:500;font-size:.92rem}
@@ -180,7 +182,7 @@
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
-    h2::before,h2::after,.btn{transition:none}
+    h2::before,h2::after,.btn,.top{transition:none}
     .js h2:not(.in)::before,.js h2:not(.in)::after{transform:none}
   }
 </style>
@@ -198,7 +200,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="top-r">
-      <button id="themeBtn" class="tbtn" type="button" aria-pressed="false"><span>Mode tableau</span></button>
+      <button id="themeBtn" class="tbtn" type="button" aria-pressed="false"><span>Mode sombre</span></button>
       <button id="menuBtn" class="mbtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
     </div>
   </div>
@@ -361,7 +363,7 @@
   function applyTheme(t){
     root.setAttribute('data-theme',t);
     tBtn.setAttribute('aria-pressed',t==='dark'?'true':'false');
-    tBtn.firstElementChild.textContent=t==='dark'?'Mode cahier':'Mode tableau';
+    tBtn.firstElementChild.textContent=t==='dark'?'Mode clair':'Mode sombre';
     var mt=document.querySelector('meta[name="theme-color"]'); if(mt) mt.setAttribute('content',t==='dark'?'#0E1533':'#FBFCFF');
     if(window.__phaseTheme) window.__phaseTheme();
   }
@@ -375,6 +377,17 @@
   var mBtn=document.getElementById('menuBtn'), nav=document.getElementById('nav');
   mBtn.addEventListener('click',function(){ var o=nav.classList.toggle('open'); mBtn.setAttribute('aria-expanded',o?'true':'false'); });
   nav.addEventListener('click',function(e){ if(e.target.tagName==='A'){ nav.classList.remove('open'); mBtn.setAttribute('aria-expanded','false'); } });
+
+  /* header : il se masque quand on descend et revient dès qu'on remonte */
+  var hdr=document.querySelector('.top'), lastY=window.pageYOffset||0, busy=false;
+  function onScroll(){
+    var y=window.pageYOffset||0, dy=y-lastY;
+    if(y<80 || nav.classList.contains('open')){ hdr.classList.remove('hide'); lastY=y; }
+    else if(dy>6){ hdr.classList.add('hide'); lastY=y; }
+    else if(dy<-6){ hdr.classList.remove('hide'); lastY=y; }
+    busy=false;
+  }
+  window.addEventListener('scroll',function(){ if(!busy){ busy=true; requestAnimationFrame(onScroll); } },{passive:true});
 
   var heads=document.querySelectorAll('h2');
   if('IntersectionObserver' in window){
